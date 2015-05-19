@@ -10,6 +10,23 @@ def convolui(sinal1,sinal2):
       ready = rebatido1.dslc(rebatido1.dom[-1]-sinal2.dom[0])
       ready.show()
       sinal2.show()
+      Y = sinal(0,0)
+      aux = 0
+      for s,t in zip(ready.dom,ready.img):
+            for j in sinal2.img:
+                  if (s==i):
+                        #aqui pegamos o ultimo elemento do dominio do vetor que esta sendo deslocado,
+                        #ele será substituido algumas veses mas no final ficará sempre na posição correta
+                        if (Y.dom[0]==0):
+                              Y.dom[0] = ready.dom[-1]
+                              Y.img[0]= Y.img[0] + (t * j)
+                              ready.dslc(-1)
+                              aux = aux + 1
+                        else:
+                              Y.dom[aux] = Y.dom[aux-1]+1
+                              Y.img[aux]= Y.img[aux] + (t * j)
+                              ready.dslc(-1)
+                              aux++
       
 class sinal():
       def __init__(self, inicial, imagem):
@@ -38,17 +55,14 @@ class sinal():
             print 'imagem: {}'.  format (self.img)
 
 def main():
-      img1 = array ([4,0,3])
-      img2 = array([2,0,1,3])
-      S = sinal(-1,img1)
-      P = sinal(-3,img2)
-      convolui(P,S)
-      Y = sinal(0,0)
-      for i in S.dom:
-            for j in P.dom:
-                  if j == i:
-                    Y.dom.append = i # ou j
-                    Y.img.index(S.dom.index(i)) = Y.img.index(S.dom.index(i)) + S.img[S.dom.index(i)]*P.img[P.dom.index(i)] 
-            
+      img1 = array ([3,4,2,1])
+      img2 = array([1,0,2])
+      P = sinal(-1,img1)
+      S = sinal(-3,img2)
+##      for i in range(len(P.dom)):
+##            print '{} {}'. format(i,P.dom[i])
+      for t,s in zip(P.dom,P.img):
+            print '{} {}'. format(t,s)
+      #convolui(P,S)     
       #print np.convolve (img1,img2)
 main()
