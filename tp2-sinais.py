@@ -12,24 +12,29 @@ def convolui(sinal1,sinal2):
       aux = 0
       auxD = ready.dom[-1]
       Y = sinal([],[])
-      for s,t in zip(ready.dom,ready.img):
-            for i,j in zip(sinal2.dom,sinal2.img):
-                  if (s==i):
+      for s in range(len(ready.dom)):
+            for t in range(len(sinal2.dom)):
+                  if (ready.dom[s]==sinal2.dom[t]):
                         #aqui pegamos o ultimo elemento do dominio do vetor que esta sendo deslocado,
                         #ele será substituido algumas veses mas no final ficará sempre na posição correta
-                        print 'xd={} xi={} hd={} hi={} aux={} auxD={}'. format(s,t,i,j,aux,auxD)
+                        #print '{} {}'.format(aux,auxD)
                         Y.dom[aux] = auxD
-                        Y.img[aux]= Y.img[aux] + (t * j)
+                        print Y.img[aux]
+                        Y.img[aux]= Y.img[aux] + ((ready.img[s] * sinal2.img[t]))
+                        print '    {}'. format(Y.img[aux]) 
                         ready.dslc(-1)
                         aux += 1
                         auxD += 1
+            s = t = 0
       return Y
       
 class sinal():
       def __init__(self, inicial, imagem):
             if inicial == []:
-                  self.dom = np.zeros(shape=(1,100))
-                  self.img = np.zeros(shape=(1,100))
+                  #criando vetor de zeros pois com a função np.zeros
+                  #estava tendo um comportamento anomalo
+                  self.dom = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                  self.img = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             #cria o vetor dominio do ponto inicial até o tamanho
             #do vetor de imagens
             else:
@@ -58,11 +63,10 @@ class sinal():
 def main():
       img1 = array ([3,4,2,1])
       img2 = array([1,0,2])
-      P = sinal(-1,img1)
-      S = sinal(-3,img2)
-      T = sinal([],[])
+      P = sinal(-3,img1)
+      S = sinal(-1,img2)
       S.show()
       P.show()
-      convolui(S,P)
+      convolui(P,S)
 
 main()
