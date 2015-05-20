@@ -6,7 +6,7 @@ import numpy as np
 def convolui(sinal1,sinal2):
       rebatido1 = sinal1.rbt()
       #rebatido e deslocado as ready
-      #rebatido.dom[-1] È o ultimo elemento do vetor
+      #rebatido.dom[-1] √© o ultimo elemento do vetor
       ready = rebatido1.dslc(rebatido1.dom[-1]-sinal2.dom[0])
       ready.show()
       aux = 0
@@ -16,7 +16,7 @@ def convolui(sinal1,sinal2):
             for t in range(len(sinal2.dom)):
                   if (ready.dom[s]==sinal2.dom[t]):
                         #aqui pegamos o ultimo elemento do dominio do vetor que esta sendo deslocado,
-                        #ele ser· substituido algumas veses mas no final ficar· sempre na posiÁ„o correta
+                        #ele ser√° substituido algumas veses mas no final ficar√° sempre na posi√ß√£o correta
                         #print '{} {}'.format(aux,auxD)
                         Y.dom[aux] = auxD
                         print Y.img[aux]
@@ -31,11 +31,11 @@ def convolui(sinal1,sinal2):
 class sinal():
       def __init__(self, inicial, imagem):
             if inicial == []:
-                  #criando vetor de zeros pois com a funÁ„o np.zeros
+                  #criando vetor de zeros pois com a fun√ß√£o np.zeros
                   #estava tendo um comportamento anomalo
                   self.dom = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                   self.img = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            #cria o vetor dominio do ponto inicial atÈ o tamanho
+            #cria o vetor dominio do ponto inicial at√© o tamanho
             #do vetor de imagens
             else:
                   self.dom = array(range(inicial,imagem.size+inicial))
@@ -51,8 +51,8 @@ class sinal():
             return sinal(self.dom[0],self.img)
       
       def dslc(self, n0):
-            #deslocamento ser· feito da forma x(n - n0)
-            #self.dom[-1] È o ultimo elemento do vetor
+            #deslocamento ser√° feito da forma x(n - n0)
+            #self.dom[-1] √© o ultimo elemento do vetor
             self.dom = array(range(self.dom[0]-n0, self.dom[-1]-n0+1))
             return sinal(self.dom[0],self.img)
       
@@ -70,3 +70,32 @@ def main():
       convolui(P,S)
 
 main()
+
+    
+"""    aux = 0
+    auxD = ready_dom[-1]
+    Y_dom, Y_img = [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]
+    
+    aux2 = 0
+    fim = sinal2_dom[-1] - ready_dom[0]
+    
+    while aux2 < fim:
+
+        for s in range(len(sinal2_dom)):
+            for t in range(len(ready_dom)):
+                if (ready_dom[t]==sinal2_dom[s]):
+                    #aqui pegamos o ultimo elemento do dominio do vetor que esta sendo deslocado,
+                    #ele ser√° substituido algumas veses mas no final ficar√° sempre na posi√ß√£o correta
+                    #print '{} {}'.format(aux,auxD)
+                    Y_dom[aux2] = auxD
+                    print Y_img[aux2]
+                    Y_img[aux2] = Y_img[aux2] + (ready_img[t] * sinal2_img[s])
+                    print ' {}'. format(Y_img[aux2])
+
+        auxD += 1
+        ready_dom = [i+1 for i in ready_dom]
+        aux2 += 1
+                
+        
+    return Y_dom, Y_img
+ """
