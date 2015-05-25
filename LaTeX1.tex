@@ -1,0 +1,124 @@
+\documentclass[12pt]{article}
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \huge{Universidade Estadual de Montes Claros}
+
+\vspace{10pt}
+\begin{figure}[!ht]
+\centering
+\includegraphics[height=1.5cm, width=3cm]{logo-unimontes.jpg}
+\end{figure}
+        
+        \vspace{85pt}
+        
+        \large{Segundo Trabalho Pratico - Sinais e Sistemas\\
+                Convolução em Python}
+        \vspace{160pt}
+        
+    \end{center}
+    
+    \begin{flushleft}
+        \begin{tabbing}
+            Aluno:\qquad\= Tarcisio Francisco Batista Filho\\
+            Professor:\> Renato Dourado Maia \\
+        
+    \end{tabbing}
+          
+    \end{flushleft}
+    
+    \begin{center}
+        \vspace{\fill}
+        Montes Claros, 27 de Maio de 2015
+    \end{center}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
+
+O objetivo do trabalaho é compreender melhor o funcionamento de covoluções através de uma ferramenta matemática que possibilite a visualisação e entendimento de uma forma diferente e simplificada. O metodo "rebate, desloca, multiplica, soma" foi empregado em uma primeira instancia mas após terminado não estava achei elegante o suficiente, observando o que é a convolução outro metodo parecido porem mais elegante foi encontrado.
+
+\section{Desenvolvimento}
+
+Para o experimento em questão foram utilizados duas metodologias de convolução parecidas mas destintas.
+
+	\subsection{Metodologia 1:}
+	Na metodologia 1 foi feita a convolução de forma tradicional "rebate, desloca, multiplica, soma",  foram utilizados 2 estruturas de repetição 1 \textit{while} e 2 \textit{for}, alem da criação da classe de sinal que recebe o primeiro elemento do dominio de um sinal e o vetor imagem e facilita bastante o tratamento de sinais. Basicamente o \textit{while} de fora simplesmente percorre e marca as posições o vetor de saida, de forma que esse será percorrido apenas uma vez, os 2 \textit{for's} são utilizados com a finalidade tradicinal de percorrer todo o vetor de dentro para cada elemento de fora e se os os dominios dos elementos forem iguais é feito o produto entre eles e adicionado na posição aux que percorre todo o vetor imagem da saida. acompanhe graficos de sinais teste:
+
+\begin{figure}[H]
+\includegraphics[height=5cm, width=9cm]{S1.png}
+	\caption {Sinal S}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[height=5cm, width=9cm]{P1.png}
+	\caption {Sinal P}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[height=5cm, width=9cm]{conv1.png}
+	\caption {Convolução}
+\end{figure}
+Para testes com outros sinais basta editar o arquivo e modificar o vetor de imagem e o numero do primeiro elemento do dominio.
+
+	\subsection {Metodologia 2:}
+	Na metodologia 2 foi observado durante a convolução de dois sinais, atraves dos indices do vetores um elemento de um vetor multiplica todos os elementos do outro vetor baseado nisso foi feita uma logica. Para todos os elementos do primeiro vetor são multiplicados pelos elementos do segundo vetor o segredo é a posição em que eles são salvos. Em segida imagens do sinal de teste:
+	
+	\begin{figure}[H]
+\includegraphics[height=5cm, width=9cm]{S2.png}
+	\caption {Sinal S}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[height=5cm, width=9cm]{P2.png}
+	\caption {Sinal P}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[height=5cm, width=9cm]{conv2.png}
+	\caption {Convolução}
+\end{figure}
+
+
+\section{Conclusão}
+
+Na metodologia 1  meu caro colega Murilo Camargos me apresentou a algumas de suas ideias para a resolução do problema como utilizar a progrmação orientada a objetos, criar a classe Sinal, chamar o sinal de uma composição de dominio e imagem, metodos otimizados de rebater e deslocar; sem duvidas esses conceitos me ajudara muito a clariar minha mente sobre o assuto. Resolvi o problema mas infelizmente o código em si ficou muito parecido com o dele, ainda assim a lógica não era muito elegante pois utilizava 1 "while" e 2 "for's", na segunda metodologia ainda foram utilizadas algumas ideias como a utilisação de uma classe de sinais, nela utilizo apenas duas estruturas de repetição e nenhum estrutura de tomada de decisão pois todos os elementos dos dis vetores acabam se multiplicando então apenas preciso colocar as multiplicações em seus lugares devidos.
+
+
+\newpage
+\section{Bibliografia}
+
+[1]  \url{wiki.scipy.org/Tentative_NumPy_Tutorial}
+
+[2]  \url{stackoverflow.com/questions/3940128/how-can-i-reverse-a-list-in-python
+}
+
+[3]  \url{www.openbookproject.net/books/bpp4awd/ch04.html}
+
+[4]  \url{anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/functions.html}
+
+[5]  \url{matplotlib.org/api/pyplot_api.html}
+
+[6]  \url{matplotlib.org/users/pyplot_tutorial.html}
+
+[7]  \url{pplware.sapo.pt/tutoriais/construo-de-um-relatrio-acadmico-em-latex-parte-i/}
+
+[8]  \url{sbi.iqsc.usp.br/files/Manual-SBI_LATEX_2013-.pdf} 
+\end{document}
